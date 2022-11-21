@@ -15,6 +15,9 @@ jobs:
 
       - name: Run shellcheck and shfmt on ./script.sh
         run: |
-          sudo apt-get -qq install shellcheck shfmt -y
+          sudo apt-get -qq install shellcheck -y > /dev/null
+          shellcheck --version
+          sudo apt-get -qq install shfmt -y > /dev/null
+          shfmt --version
           shellcheck ./script.sh
           shfmt -i 4 -d ./script.sh
