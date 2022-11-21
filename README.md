@@ -1,5 +1,11 @@
 # Jira Issue Key
 
+<p align="center">
+    <a href="https://github.com/flashios09/jira-issue-key/actions/workflows/ci.yml" target="_blank">
+        <img src="https://github.com/flashios09/jira-issue-key/actions/workflows/ci.yml/badge.svg" alt="CI Status">
+    </a>
+</p>
+
 Extract the [Jira Issue Key](https://support.atlassian.com/jira-software-cloud/docs/what-is-an-issue/)(e.g. `GWT-1`) from current git branch name(e.g. `GWT-1-ci-cd-tests`).
 
 ## Installation
