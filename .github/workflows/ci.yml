@@ -15,7 +15,7 @@ jobs:
 
       - name: Run ShellCheck on ./script.sh
         run: |
-          sudo apt update && sudo apt upgrade -y
+          sudo apt update
           sudo apt install shellcheck -y
           shellcheck --version
           shellcheck ./script.sh
