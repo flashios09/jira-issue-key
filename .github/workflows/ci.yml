@@ -13,9 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run ShellCheck on ./script.sh
+      - name: Run shellcheck and shfmt on ./script.sh
         run: |
           sudo apt update
-          sudo apt install shellcheck -y
-          shellcheck --version
+          sudo apt install shellcheck shfmt -y
           shellcheck ./script.sh
+          shfmt -i 4 -d ./script.sh
