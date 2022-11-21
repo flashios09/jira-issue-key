@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run ShellCheck on ./script.sh
+        run: |
+          sudo apt install shellcheck -y
+          which shellcheck
+          shellcheck ./script.sh
