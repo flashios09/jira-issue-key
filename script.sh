@@ -13,11 +13,11 @@ function get_script_file() {
 
 # Constants:
 SCRIPT_FILE="$(get_script_file)"
-SCRIPT_VERSION="0.1.2-alpha.1"
+SCRIPT_VERSION="0.1.3-alpha.1"
 SCRIPT_DESCRIPTION="Extract the Jira Issue Key(e.g. \`GWT-1\`) from current git branch name(e.g. \`GWT-1-ci-cd-tests\`), jik v$SCRIPT_VERSION"
 
 # options
-sed_regex='s/([a-z_]*\/*)([A-Z]+-[0-9]+).*/\2/'
+sed_regex='s/[a-z_]*\/*([A-Z]+-[0-9]+).*/\1/p'
 
 function cat_help_message() {
     cat <<EOF
@@ -79,4 +79,4 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-git rev-parse --abbrev-ref HEAD | sed -E "$sed_regex"
+git rev-parse --abbrev-ref HEAD | sed -nE "$sed_regex"
