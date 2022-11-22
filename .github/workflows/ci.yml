@@ -21,3 +21,20 @@ jobs:
           shfmt --version
           shellcheck ./script.sh
           shfmt -i 4 -d ./script.sh
+
+      - name: Test the jik command
+        run: |
+          chmod +x ./script.sh
+          ln -s "$PWD/script.sh" /usr/local/bin/jik
+          git checkout -b JIK-1-test-jik-command
+          [[ $(jik) == "JIK-1" ]] && echo "pass" || exit 1
+          git checkout -b feature/JIK-1-test-jik-command
+          [[ $(jik) == "JIK-1" ]] && echo "pass" || exit 1
+          git checkout -b hotfix/JIK-1-test-jik-command
+          [[ $(jik) == "JIK-1" ]] && echo "pass" || exit 1
+          git checkout -b bugfix/JIK-1-test-jik-command
+          [[ $(jik) == "JIK-1" ]] && echo "pass" || exit 1
+          git checkout -b any_branch_prefix/JIK-1-test-jik-command
+          [[ $(jik) == "JIK-1" ]] && echo "pass" || exit 1
+          git checkout -b JIK-1-test-jik-command
+          [[ $(jik -E 's/([a-z]*\/*)([A-Z]+-[0-9]+).*/\2/') == "JIK-1" ]] && echo "pass" || exit 1
