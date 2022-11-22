@@ -45,5 +45,5 @@ jobs:
           [[ $(jik -E 's/([a-z_]*\/*)([A-Z]+-[0-9]+).*/\2/') == "JIK-1" ]] && echo "pass" || exit 1
           touch test-jik-command-in-commit-message
           git add test-jik-command-in-commit-message
-          git commit -m "($jik) test jik command in commit message"
+          git commit -m "$(jik) test jik command in commit message"
           [[ $(git show -s --format='%s') == "JIK-1 test jik command in commit message" ]] && echo "pass" || exit 1
