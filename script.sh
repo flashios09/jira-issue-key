@@ -17,7 +17,7 @@ SCRIPT_VERSION="0.1.0-alpha.1"
 SCRIPT_DESCRIPTION="Extract the Jira Issue Key(e.g. \`GWT-1\`) from current git branch name(e.g. \`GWT-1-ci-cd-tests\`), jik v$SCRIPT_VERSION"
 
 # options
-sed_regex='s/([a-z]*\/*)([A-Z]+-[0-9]+).*/\2/'
+sed_regex='s/([a-z_]*\/*)([A-Z]+-[0-9]+).*/\2/'
 
 function cat_help_message() {
     cat <<EOF

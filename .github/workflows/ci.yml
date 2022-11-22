@@ -37,4 +37,4 @@ jobs:
           git checkout -b any_branch_prefix/JIK-1-test-jik-command
           [[ $(jik) == "JIK-1" ]] && echo "pass" || exit 1
           git checkout -b JIK-1-test-jik-command
-          [[ $(jik -E 's/([a-z]*\/*)([A-Z]+-[0-9]+).*/\2/') == "JIK-1" ]] && echo "pass" || exit 1
+          [[ $(jik -E 's/([a-z_]*\/*)([A-Z]+-[0-9]+).*/\2/') == "JIK-1" ]] && echo "pass" || exit 1

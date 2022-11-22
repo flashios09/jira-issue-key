@@ -31,8 +31,8 @@ jik -v|--version            display the script version
 ## Options:
 ```bash
 --sed-regex|-E <regex>      the sed regex expression used to extract the jira issue key from branch name
-                            (default sed regex 's/([a-z]*\/*)([A-Z]+-[0-9]+).*/\2/')
-                            e.g. jik -E 's/([a-z]*\/*)([A-Z]+-[0-9]+).*/\2/'
+                            (default sed regex 's/([a-z_]*\/*)([A-Z]+-[0-9]+).*/\2/')
+                            e.g. jik -E 's/([a-z_]*\/*)([A-Z]+-[0-9]+).*/\2/'
 ```
 
 ## Examples of git branch names*
