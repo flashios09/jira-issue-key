@@ -13,7 +13,7 @@ function get_script_file() {
 
 # Constants:
 SCRIPT_FILE="$(get_script_file)"
-SCRIPT_VERSION="0.1.0-alpha.1"
+SCRIPT_VERSION="0.1.2-alpha.1"
 SCRIPT_DESCRIPTION="Extract the Jira Issue Key(e.g. \`GWT-1\`) from current git branch name(e.g. \`GWT-1-ci-cd-tests\`), jik v$SCRIPT_VERSION"
 
 # options
