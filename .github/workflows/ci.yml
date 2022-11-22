@@ -18,32 +18,56 @@ jobs:
           git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
           git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
 
-      - name: Run shellcheck and shfmt on ./script.sh
+      - name: Install and run shellcheck on ./script.sh
         run: |
           sudo apt-get -qq install shellcheck -y > /dev/null
           shellcheck --version
+          shellcheck ./script.sh
+
+      - name: Install and run shfmt on ./script.sh
+        run: |
           sudo apt-get -qq install shfmt -y > /dev/null
           shfmt --version
-          shellcheck ./script.sh
           shfmt -i 4 -d ./script.sh
 
-      - name: Test the jik command
+      - name: Install the jik command
         run: |
           chmod +x ./script.sh
           ln -s "$PWD/script.sh" /usr/local/bin/jik
+
+      - name: Test `jik` command on `JIK-1-test-jik-command` branch
+        run: |
           git checkout -b JIK-1-test-jik-command
           [[ $(jik) == "JIK-1" ]] && echo "pass" || exit 1
+
+      - name: Test `jik` command on `feature/JIK-1-test-jik-command` branch
+        run: |
           git checkout -b feature/JIK-1-test-jik-command
           [[ $(jik) == "JIK-1" ]] && echo "pass" || exit 1
+
+      - name: Test `jik` command on `hotfix/JIK-1-test-jik-command` branch
+        run: |
           git checkout -b hotfix/JIK-1-test-jik-command
           [[ $(jik) == "JIK-1" ]] && echo "pass" || exit 1
+
+      - name: Test `jik` command on `bugfix/JIK-1-test-jik-command` branch
+        run: |
           git checkout -b bugfix/JIK-1-test-jik-command
           [[ $(jik) == "JIK-1" ]] && echo "pass" || exit 1
+
+      - name: Test `jik` command on `any_branch_prefix/JIK-1-test-jik-command` branch
+        run: |
           git checkout -b any_branch_prefix/JIK-1-test-jik-command
           [[ $(jik) == "JIK-1" ]] && echo "pass" || exit 1
+
+      - name: Test `jik` command with custom regex
+        run: |
           git checkout -b JIK-1-test-jik-command-with-custom-regex
           [[ $(jik -E 's/([a-z_]*\/*)([A-Z]+-[0-9]+).*/\2/') == "JIK-1" ]] && echo "pass" || exit 1
-          touch test-jik-command-in-commit-message
-          git add test-jik-command-in-commit-message
+
+      - name: Test `jik` command in commit message
+        run: |
+          touch test-jik-command-in-commit-message.txt
+          git add test-jik-command-in-commit-message.txt
           git commit -m "$(jik) test jik command in commit message"
           [[ $(git show -s --format='%s') == "JIK-1 test jik command in commit message" ]] && echo "pass" || exit 1
