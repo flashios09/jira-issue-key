@@ -14,7 +14,7 @@ Extract the [Jira Issue Key](https://support.atlassian.com/jira-software-cloud/d
 ## Installation
 ```bash
 # Clone the repo
-git clone git@github.com:flashios09/jira-issue-key.git
+git clone https://github.com/flashios09/jira-issue-key.git
 # CD to `jira-issue-key` folder
 cd jira-issue-key
 # Make `script.sh` executable
